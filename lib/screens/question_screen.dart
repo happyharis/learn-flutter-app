@@ -1,23 +1,158 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
+import 'package:learn_flutter_app/screens/challenge_screen.dart';
 
 class QuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ZukunfColor.blue,
-        title: Text('Alignment'),
+        backgroundColor: ZukunfColor.blue.withOpacity(1),
+        title: Text('Challenge'),
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 187,
               color: ZukunfColor.blue,
-            )
+              child: Stack(
+                children: [
+                  CardTitle('Alignment'),
+                  CardImage(),
+                ],
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 35.0, vertical: 38),
+              child: Text(
+                  'Alignment(0.0, 0.0) represents the center of the rectangle.\n\nThe distance from -1.0 to +1.0 is the distance from one side of the rectangle to the other side of the rectangle.\n\nTherefore, 2.0 units horizontally (or vertically) is equivalent to the width (or height) of the rectangle.\n\nAlignment(-1.0, -1.0) represents the top left of the rectangle.\n\nAlignment(1.0, 1.0) represents the bottom right of the rectangle.'),
+            ),
+            Container(
+              height: 187,
+              color: ZukunfColor.blue,
+              child: Stack(
+                children: [
+                  CardImage(),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 38),
+                    child: Text(
+                        'If I were to move the middle circle widget to the top left, what are the alignment coordinates?'),
+                  ),
+                  AnswerButton(
+                    answer: 'Alignment(1, 1)',
+                  ),
+                  AnswerButton(
+                    answer: 'Alignment(1, 0)',
+                  ),
+                  AnswerButton(
+                    answer: 'Alignment(0, 1)',
+                  ),
+                  SizedBox(height: 15),
+                  ZukunfButton.solid(
+                    text: 'Submit',
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 20),
+                  ZukunfButton(
+                    text: 'Show Explanation',
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 32),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ZukunfButton extends StatelessWidget {
+  final String text;
+  final Function() onPressed;
+  final bool isSolid;
+  const ZukunfButton({
+    Key key,
+    @required this.text,
+    @required this.onPressed,
+    this.isSolid = false,
+  }) : super(key: key);
+  const ZukunfButton.solid({
+    Key key,
+    @required this.text,
+    @required this.onPressed,
+    this.isSolid = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      onPressed: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 18,
+            color: isSolid ? Colors.white : ZukunfColor.grey,
+          ),
+        ),
+      ),
+      minWidth: double.infinity,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(
+            color: isSolid ? Colors.white : ZukunfColor.grey,
+            width: 2.0,
+          )),
+      color: isSolid ? ZukunfColor.darkblue : Colors.white,
+    );
+  }
+}
+
+class AnswerButton extends StatelessWidget {
+  final String answer;
+  const AnswerButton({
+    Key key,
+    @required this.answer,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: FlatButton(
+        minWidth: double.infinity,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(38),
+          side: BorderSide(
+            color: ZukunfColor.blue,
+            width: 2.0,
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Text(
+              answer,
+              style: GoogleFonts.montserrat(fontSize: 18),
+            ),
+          ),
+        ),
+        onPressed: () {},
       ),
     );
   }

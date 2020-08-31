@@ -9,7 +9,7 @@ class ChallengeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Flutter Quizzes',
+          'Flutter Challenges',
         ),
       ),
       body: ListView(
@@ -63,11 +63,12 @@ class ChallengeCard extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               child: InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 onTap: () => Navigator.of(context).pushNamed('question'),
                 child: Stack(
                   children: [
                     CardTitle(title),
-                    Image(),
+                    CardImage(),
                     DescriptionText(description),
                   ],
                 ),
@@ -103,8 +104,8 @@ class DescriptionText extends StatelessWidget {
   }
 }
 
-class Image extends StatelessWidget {
-  const Image({
+class CardImage extends StatelessWidget {
+  const CardImage({
     Key key,
   }) : super(key: key);
 

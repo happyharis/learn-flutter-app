@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:learn_flutter_app/components/list_answer_button_view.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
+import 'package:learn_flutter_app/models/answer.dart';
 import 'package:learn_flutter_app/screens/challenge_screen.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -49,14 +50,13 @@ class QuestionScreen extends StatelessWidget {
                     child: Text(
                         'If I were to move the middle circle widget to the top left, what are the alignment coordinates?'),
                   ),
-                  AnswerButton(
-                    answer: 'Alignment(1, 1)',
-                  ),
-                  AnswerButton(
-                    answer: 'Alignment(1, 0)',
-                  ),
-                  AnswerButton(
-                    answer: 'Alignment(0, 1)',
+                  ListAnswerButtonView(
+                    answers: [
+                      Answer(text: 'Alignment(1, 1)', isCorrect: true),
+                      Answer(text: 'Alignment(1, 0)'),
+                      Answer(text: 'Alignment(0, 1)'),
+                      Answer(text: 'Alignment(0, 0)'),
+                    ],
                   ),
                   SizedBox(height: 15),
                   ZukunfButton.solid(
@@ -118,42 +118,6 @@ class ZukunfButton extends StatelessWidget {
             width: 2.0,
           )),
       color: isSolid ? ZukunfColor.darkblue : Colors.white,
-    );
-  }
-}
-
-class AnswerButton extends StatelessWidget {
-  final String answer;
-  const AnswerButton({
-    Key key,
-    @required this.answer,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: FlatButton(
-        minWidth: double.infinity,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(38),
-          side: BorderSide(
-            color: ZukunfColor.blue,
-            width: 2.0,
-          ),
-        ),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Text(
-              answer,
-              style: GoogleFonts.montserrat(fontSize: 18),
-            ),
-          ),
-        ),
-        onPressed: () {},
-      ),
     );
   }
 }

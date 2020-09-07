@@ -6,4 +6,5 @@ class ZukunfColor {
   static const green = Color(0xffADFFB0);
   static const grey = Color(0xff666666);
   static const red = Color(0xffFFBEBE);
+  static const yellow = Color(0xffFFFCBE);
 }

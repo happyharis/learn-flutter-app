@@ -19,21 +19,24 @@ class _ListAnswerButtonViewState extends State<ListAnswerButtonView> {
   int index;
   @override
   Widget build(BuildContext context) {
-    final questionNotifier = Provider.of<QuestionNotifier>(
+    final updateAnswer = Provider.of<QuestionNotifier>(
       context,
       listen: false,
-    );
+    ).updateAnswer;
+    final questionNotifier = Provider.of<QuestionNotifier>(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         for (var answer in widget.answers)
           AnswerButton(
             answer: answer.text,
+            isCorrect: true,
+            isCompleted: true,
             isTapped: index == widget.answers.indexOf(answer),
             onPressed: () {
               final currentIndex = widget.answers.indexOf(answer);
               setState(() => index = currentIndex);
-              questionNotifier.updateAnswer(answer.isCorrect);
+              updateAnswer(answer.isCorrect);
             },
           ),
       ],

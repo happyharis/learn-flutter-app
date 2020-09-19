@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_app/components/list_answer_button_view.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
-import 'package:learn_flutter_app/models/answer.dart';
+import 'package:learn_flutter_app/models/question.dart';
 import 'package:learn_flutter_app/models/question_notifier.dart';
 import 'package:learn_flutter_app/screens/challenge_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +9,12 @@ import 'package:provider/provider.dart';
 class QuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<QuestionNotifier>(
+    final _question = question;
+    return ChangeNotifierProxyProvider0<QuestionNotifier>(
       create: (context) => QuestionNotifier(),
+      update: (_, questionNotifier) {
+        return questionNotifier..initialise(_question);
+      },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: ZukunfColor.blue.withOpacity(1),
@@ -51,26 +55,21 @@ class QuestionScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 38),
-                      child: Text(
-                          'If I were to move the middle circle widget to the top left, what are the alignment coordinates?'),
+                      child: Text(_question.text),
                     ),
-                    ListAnswerButtonView(
-                      answers: [
-                        Answer(text: 'Alignment(1, 1)', isCorrect: true),
-                        Answer(text: 'Alignment(1, 0)'),
-                        Answer(text: 'Alignment(0, 1)'),
-                        Answer(text: 'Alignment(0, 0)'),
-                      ],
-                    ),
+                    ListAnswerButtonView(answers: _question.options),
                     SizedBox(height: 15),
                     Builder(
                       builder: (context) {
                         final questionNotifier =
                             Provider.of<QuestionNotifier>(context);
+
+                        final _isCompleted =
+                            questionNotifier.currentQuestion.isCompleted;
                         return ZukunfButton.solid(
-                          text: 'Submit',
+                          text: _isCompleted ?? false ? 'Continue' : 'Submit',
                           onPressed: () {
-                            print(questionNotifier.isAnswerCorrect);
+                            questionNotifier.updateCompletion(true);
                           },
                         );
                       },

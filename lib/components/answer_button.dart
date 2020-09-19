@@ -6,12 +6,16 @@ class AnswerButton extends StatelessWidget {
   final String answer;
   final bool isTapped;
   final Function() onPressed;
+  final bool isCompleted;
+  final bool isCorrect;
 
   const AnswerButton({
     Key key,
     @required this.answer,
     @required this.isTapped,
     this.onPressed,
+    this.isCompleted,
+    this.isCorrect,
   }) : super(key: key);
 
   @override

@@ -66,10 +66,15 @@ class QuestionScreen extends StatelessWidget {
 
                         final _isCompleted =
                             questionNotifier.currentQuestion.isCompleted;
+                        final _hasPickedAnswer =
+                            questionNotifier.currentQuestion.isCorrect != null;
+
                         return ZukunfButton.solid(
                           text: _isCompleted ?? false ? 'Continue' : 'Submit',
                           onPressed: () {
-                            questionNotifier.updateCompletion(true);
+                            if (_hasPickedAnswer) {
+                              questionNotifier.updateCompletion(true);
+                            }
                           },
                         );
                       },

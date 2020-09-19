@@ -8,11 +8,13 @@ class QuestionNotifier extends ChangeNotifier {
 
   void updateAnswer(bool isCorrect) {
     _currentQuestion = _currentQuestion.copyWith(isCorrect: isCorrect ?? false);
+    notifyListeners();
   }
 
   void updateCompletion(bool isCompleted) {
-    _currentQuestion =
-        _currentQuestion.copyWith(isCompleted: isCompleted ?? false);
+    _currentQuestion = _currentQuestion.copyWith(
+      isCompleted: isCompleted ?? false,
+    );
     notifyListeners();
   }
 

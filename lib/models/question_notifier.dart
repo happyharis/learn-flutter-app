@@ -18,6 +18,13 @@ class QuestionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateChosenAnswer(int answerId) {
+    _currentQuestion = _currentQuestion.copyWith(
+      chosenAnswerId: answerId,
+    );
+    notifyListeners();
+  }
+
   void initialise(Question question) {
     _currentQuestion = question;
   }

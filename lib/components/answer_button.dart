@@ -29,9 +29,11 @@ class AnswerButton extends StatelessWidget {
       Color whenTapped = ZukunfColor.yellow,
       Color whenNotTapped,
       Color whenCorrect = ZukunfColor.lightPurple,
+      Color whenCompleted = Colors.white,
     }) {
-      if (questionNotNull && isCorrect && question.isCompleted) {
-        return whenCorrect;
+      if (questionNotNull && question.isCompleted) {
+        if (isCorrect) return whenCorrect;
+        return whenCompleted;
       }
       return isTapped ?? false ? whenTapped : whenNotTapped;
     }
@@ -46,9 +48,7 @@ class AnswerButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(38),
           side: BorderSide(
-            color: handleButtonColour(
-              whenNotTapped: ZukunfColor.blue,
-            ),
+            color: handleButtonColour(whenNotTapped: ZukunfColor.blue),
             width: 2.0,
           ),
         ),
@@ -58,7 +58,17 @@ class AnswerButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Text(
               choice.text,
-              style: GoogleFonts.montserrat(fontSize: 18),
+              style: GoogleFonts.montserrat(
+                fontSize: 18,
+                textStyle: TextStyle(
+                  color: handleButtonColour(
+                    whenTapped: Colors.black,
+                    whenNotTapped: Colors.black,
+                    whenCompleted: Colors.black.withOpacity(0.46),
+                    whenCorrect: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
         ),

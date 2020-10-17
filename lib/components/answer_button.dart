@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
-import 'package:learn_flutter_app/models/answer.dart';
+import 'package:learn_flutter_app/models/choice.dart';
 import 'package:learn_flutter_app/models/question.dart';
 
 class AnswerButton extends StatelessWidget {
   final bool isTapped;
   final Function() onPressed;
   final Question question;
-  final Answer answer;
+  final Choice choice;
 
   const AnswerButton({
     Key key,
     @required this.isTapped,
     this.onPressed,
     this.question,
-    this.answer,
+    this.choice,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final chosenAnswerId = question.chosenAnswerId;
+    Color handleColour() {
+      if (question.chosenAnswerId != null && question.isCompleted != null) {
+        final isChosenAnswer = question.chosenAnswerId == choice.id;
+        final isCorrect = isChosenAnswer == choice.isAnswer;
+        if (isCorrect && question.isCompleted) {
+          return ZukunfColor.lightPurple;
+        }
+      }
+      return isTapped ?? false ? ZukunfColor.yellow : Colors.white;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: FlatButton(
-        color: isTapped ?? false ? ZukunfColor.yellow : Colors.white,
+        color: handleColour(),
         minWidth: double.infinity,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(38),
@@ -38,7 +48,7 @@ class AnswerButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Text(
-              answer.text,
+              choice.text,
               style: GoogleFonts.montserrat(fontSize: 18),
             ),
           ),
@@ -64,7 +74,7 @@ class AnswerButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            answer.text,
+            choice.text,
             style: GoogleFonts.montserrat(fontSize: 18),
           ),
         ),
@@ -89,7 +99,7 @@ class AnswerButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            answer.text,
+            choice.text,
             style: GoogleFonts.montserrat(fontSize: 18),
           ),
         ),

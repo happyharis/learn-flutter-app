@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_app/components/answer_button.dart';
-import 'package:learn_flutter_app/models/answer.dart';
+import 'package:learn_flutter_app/models/choice.dart';
 import 'package:learn_flutter_app/models/question_notifier.dart';
 import 'package:provider/provider.dart';
 
 class ListAnswerButtonView extends StatefulWidget {
-  final List<Answer> answers;
+  final List<Choice> answers;
   const ListAnswerButtonView({
     Key key,
     @required this.answers,
@@ -33,14 +33,14 @@ class _ListAnswerButtonViewState extends State<ListAnswerButtonView> {
       children: [
         for (var answer in widget.answers)
           AnswerButton(
-            answer: answer,
+            choice: answer,
             question: _question,
             isTapped: index == widget.answers.indexOf(answer),
             onPressed: () {
               final currentIndex = widget.answers.indexOf(answer);
               setState(() => index = currentIndex);
               updateChosenAnswer(answer.id);
-              updateAnswer(answer.isCorrect);
+              updateAnswer(answer.isAnswer);
             },
           ),
       ],

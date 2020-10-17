@@ -20,26 +20,35 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color handleColour() {
-      if (question.chosenAnswerId != null && question.isCompleted != null) {
-        final isChosenAnswer = question.chosenAnswerId == choice.id;
-        final isCorrect = isChosenAnswer == choice.isAnswer;
-        if (isCorrect && question.isCompleted) {
-          return ZukunfColor.lightPurple;
-        }
+    final isChosenAnswer = question.chosenAnswerId == choice.id;
+    final isCorrect = isChosenAnswer == choice.isAnswer;
+    final questionNotNull =
+        question.chosenAnswerId != null && question.isCompleted != null;
+
+    Color handleButtonColour({
+      Color whenTapped = ZukunfColor.yellow,
+      Color whenNotTapped,
+      Color whenCorrect = ZukunfColor.lightPurple,
+    }) {
+      if (questionNotNull && isCorrect && question.isCompleted) {
+        return whenCorrect;
       }
-      return isTapped ?? false ? ZukunfColor.yellow : Colors.white;
+      return isTapped ?? false ? whenTapped : whenNotTapped;
     }
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: FlatButton(
-        color: handleColour(),
+        color: handleButtonColour(
+          whenNotTapped: Colors.white,
+        ),
         minWidth: double.infinity,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(38),
           side: BorderSide(
-            color: isTapped ?? false ? ZukunfColor.yellow : ZukunfColor.blue,
+            color: handleButtonColour(
+              whenNotTapped: ZukunfColor.blue,
+            ),
             width: 2.0,
           ),
         ),

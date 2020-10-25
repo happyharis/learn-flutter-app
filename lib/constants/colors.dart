@@ -8,4 +8,5 @@ class ZukunfColor {
   static const red = Color(0xffFFBEBE);
   static const yellow = Color(0xffFFFCBE);
   static const lightPurple = Color(0xff9FB9FE);
+  static const purple = Color(0xff3F5FB2);
 }

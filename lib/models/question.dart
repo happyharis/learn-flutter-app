@@ -3,6 +3,8 @@ import 'package:learn_flutter_app/models/choice.dart';
 class Question {
   final String text;
   final List<Choice> options;
+
+  /// Default null
   final bool isCompleted;
   final bool isCorrect;
 

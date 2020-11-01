@@ -65,7 +65,8 @@ class QuestionScreen extends StatelessWidget {
                             Provider.of<QuestionNotifier>(context);
 
                         final _isCompleted =
-                            questionNotifier.currentQuestion.isCompleted;
+                            questionNotifier.currentQuestion.isCompleted ??
+                                false;
                         final _hasPickedAnswer =
                             questionNotifier.currentQuestion.isCorrect != null;
 
@@ -74,6 +75,7 @@ class QuestionScreen extends StatelessWidget {
                           onPressed: () {
                             if (_hasPickedAnswer) {
                               questionNotifier.updateCompletion(true);
+                              if (_isCompleted) Navigator.of(context).pop();
                             }
                           },
                         );

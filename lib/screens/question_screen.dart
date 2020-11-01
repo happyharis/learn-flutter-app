@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter_app/components/explanation_bottom_sheet.dart';
 import 'package:learn_flutter_app/components/list_answer_button_view.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
 import 'package:learn_flutter_app/models/question.dart';
 import 'package:learn_flutter_app/models/question_notifier.dart';
 import 'package:learn_flutter_app/screens/challenge_screen.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -84,7 +86,20 @@ class QuestionScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     ZukunfButton(
                       text: 'Show Explanation',
-                      onPressed: () {},
+                      onPressed: () {
+                        showMaterialModalBottomSheet(
+                          context: context,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(18),
+                              topRight: Radius.circular(18),
+                            ),
+                          ),
+                          builder: (context) {
+                            return ExplanationBottomSheet();
+                          },
+                        );
+                      },
                     ),
                     SizedBox(height: 32),
                   ],

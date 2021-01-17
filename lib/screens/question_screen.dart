@@ -10,14 +10,14 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatelessWidget {
-  final Challenge question;
+  final Challenge challenge;
 
-  const QuestionScreen({Key key, @required this.question}) : super(key: key);
+  const QuestionScreen({Key key, @required this.challenge}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProxyProvider0<QuestionNotifier>(
       create: (context) => QuestionNotifier(),
-      update: (_, questionNotifier) => questionNotifier..initialise(question),
+      update: (_, questionNotifier) => questionNotifier..initialise(challenge),
       child: Consumer<QuestionNotifier>(builder: (_, qnNotifier, __) {
         final _isCompleted = qnNotifier.currentQuestion.isCompleted ?? false;
         final _hasPickedAnswer = qnNotifier.currentQuestion.isCorrect != null;
@@ -57,9 +57,9 @@ class QuestionScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 38),
-                        child: Text(question.questionText),
+                        child: Text(challenge.questionText),
                       ),
-                      ListAnswerButtonView(answers: question.options),
+                      ListAnswerButtonView(answers: challenge.options),
                       SizedBox(height: 15),
                       ZukunfButton.solid(
                         text: _isCompleted ?? false ? 'Continue' : 'Submit',

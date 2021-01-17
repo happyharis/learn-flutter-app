@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => ChallengeScreen(),
-        'question': (_) => QuestionScreen(question: question),
+        'question': (_) => QuestionScreen(challenge: question),
       },
     );
   }

@@ -1,6 +1,16 @@
 import 'package:learn_flutter_app/models/choice.dart';
 
 class Challenge {
+  /// Found in the challenge card title (top)
+  final String cardTitleText;
+
+  /// Found in the challenge card description (bottom)
+  final String cardDescription;
+
+  /// Text inside question screen explaining the topic
+  final String bodyText;
+
+  /// Text inside question screen found above the options
   final String questionText;
   final List<Choice> options;
 
@@ -10,8 +20,12 @@ class Challenge {
 
   /// Represent id of tapped answer button
   final int chosenAnswerId;
-  Challenge(
-    this.questionText, {
+
+  Challenge({
+    this.cardTitleText,
+    this.cardDescription,
+    this.bodyText,
+    this.questionText,
     this.options,
     this.isCompleted,
     this.isCorrect,
@@ -26,7 +40,7 @@ class Challenge {
     chosenAnswerId,
   }) {
     return Challenge(
-      text ?? this.questionText,
+      questionText: text ?? this.questionText,
       options: options ?? this.options,
       isCompleted: isCompleted ?? this.isCompleted,
       isCorrect: isCorrect ?? this.isCorrect,
@@ -36,7 +50,8 @@ class Challenge {
 }
 
 final question = Challenge(
-  'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
+  questionText:
+      'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
   options: [
     Choice(id: 1, text: 'Alignment(1, 1)', isAnswer: true),
     Choice(id: 2, text: 'Alignment(1, 0)'),

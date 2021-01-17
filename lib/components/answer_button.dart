@@ -46,15 +46,20 @@ class AnswerButton extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: FlatButton(
-        disabledColor: handleButtonColour(whenNotChosenAnswer: Colors.white),
-        color: handleButtonColour(whenNotTapped: Colors.white),
-        minWidth: double.infinity,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(38),
-          side: BorderSide(
-            color: handleButtonColour(whenNotTapped: ZukunfColor.blue),
-            width: 2.0,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.only(left: 20),
+          backgroundColor: handleButtonColour(
+            whenNotTapped: Colors.white,
+            whenNotChosenAnswer: Colors.white,
+          ),
+          // onSurface: handleButtonColour(whenNotChosenAnswer: Colors.white),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(38),
+            side: BorderSide(
+              color: handleButtonColour(whenNotTapped: ZukunfColor.blue),
+              width: 2.0,
+            ),
           ),
         ),
         child: Align(
@@ -81,56 +86,6 @@ class AnswerButton extends StatelessWidget {
         ),
         onPressed: question.isCompleted ?? false ? null : onPressed,
       ),
-    );
-  }
-
-  Widget buildButtonOfUnansweredQn() {
-    return FlatButton(
-      color: isTapped ?? false ? ZukunfColor.yellow : Colors.white,
-      minWidth: double.infinity,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(38),
-        side: BorderSide(
-          color: isTapped ?? false ? ZukunfColor.yellow : ZukunfColor.blue,
-          width: 2.0,
-        ),
-      ),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Text(
-            choice.text,
-            style: GoogleFonts.montserrat(fontSize: 18),
-          ),
-        ),
-      ),
-      onPressed: onPressed,
-    );
-  }
-
-  Widget buildButtonOfAnsweredQn() {
-    return FlatButton(
-      color: isTapped ?? false ? ZukunfColor.yellow : Colors.white,
-      minWidth: double.infinity,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(38),
-        side: BorderSide(
-          color: isTapped ?? false ? ZukunfColor.yellow : ZukunfColor.blue,
-          width: 2.0,
-        ),
-      ),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Text(
-            choice.text,
-            style: GoogleFonts.montserrat(fontSize: 18),
-          ),
-        ),
-      ),
-      onPressed: onPressed,
     );
   }
 }

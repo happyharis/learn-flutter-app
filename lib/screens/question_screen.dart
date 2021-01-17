@@ -156,7 +156,19 @@ class ZukunfButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(10),
+        minimumSize: Size(double.infinity, 10),
+        backgroundColor: isSolid ? ZukunfColor.darkblue : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(
+            color: isSolid ? Colors.white : ZukunfColor.grey,
+            width: 2.0,
+          ),
+        ),
+      ),
       onPressed: onPressed,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -168,14 +180,6 @@ class ZukunfButton extends StatelessWidget {
           ),
         ),
       ),
-      minWidth: double.infinity,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-          side: BorderSide(
-            color: isSolid ? Colors.white : ZukunfColor.grey,
-            width: 2.0,
-          )),
-      color: isSolid ? ZukunfColor.darkblue : Colors.white,
     );
   }
 }

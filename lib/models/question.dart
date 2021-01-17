@@ -1,7 +1,7 @@
 import 'package:learn_flutter_app/models/choice.dart';
 
-class Question {
-  final String text;
+class Challenge {
+  final String questionText;
   final List<Choice> options;
 
   /// Default null
@@ -10,23 +10,23 @@ class Question {
 
   /// Represent id of tapped answer button
   final int chosenAnswerId;
-  Question(
-    this.text, {
+  Challenge(
+    this.questionText, {
     this.options,
     this.isCompleted,
     this.isCorrect,
     this.chosenAnswerId,
   });
 
-  Question copyWith({
+  Challenge copyWith({
     text,
     options,
     isCompleted,
     isCorrect,
     chosenAnswerId,
   }) {
-    return Question(
-      text ?? this.text,
+    return Challenge(
+      text ?? this.questionText,
       options: options ?? this.options,
       isCompleted: isCompleted ?? this.isCompleted,
       isCorrect: isCorrect ?? this.isCorrect,
@@ -35,7 +35,7 @@ class Question {
   }
 }
 
-final question = Question(
+final question = Challenge(
   'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
   options: [
     Choice(id: 1, text: 'Alignment(1, 1)', isAnswer: true),

@@ -10,7 +10,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatelessWidget {
-  final Question question;
+  final Challenge question;
 
   const QuestionScreen({Key key, @required this.question}) : super(key: key);
   @override
@@ -57,7 +57,7 @@ class QuestionScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 38),
-                        child: Text(question.text),
+                        child: Text(question.questionText),
                       ),
                       ListAnswerButtonView(answers: question.options),
                       SizedBox(height: 15),

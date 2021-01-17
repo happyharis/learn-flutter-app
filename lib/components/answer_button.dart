@@ -7,7 +7,7 @@ import 'package:learn_flutter_app/models/question.dart';
 class AnswerButton extends StatelessWidget {
   final bool isTapped;
   final Function() onPressed;
-  final Question question;
+  final Challenge question;
   final Choice choice;
 
   const AnswerButton({

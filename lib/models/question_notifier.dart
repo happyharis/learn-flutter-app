@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter_app/models/question.dart';
 
 class QuestionNotifier extends ChangeNotifier {
-  Question _currentQuestion;
+  Challenge _currentQuestion;
 
-  Question get currentQuestion => _currentQuestion;
+  Challenge get currentQuestion => _currentQuestion;
 
   void updateAnswer(bool isCorrect) {
     _currentQuestion = _currentQuestion.copyWith(isCorrect: isCorrect ?? false);
@@ -25,7 +25,7 @@ class QuestionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void initialise(Question question) {
+  void initialise(Challenge question) {
     _currentQuestion = question;
   }
 }

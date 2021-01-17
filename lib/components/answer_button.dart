@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
 import 'package:learn_flutter_app/models/choice.dart';
-import 'package:learn_flutter_app/models/question.dart';
+import 'package:learn_flutter_app/models/challenge.dart';
 
 class AnswerButton extends StatelessWidget {
   final bool isTapped;

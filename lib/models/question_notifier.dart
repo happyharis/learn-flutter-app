@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter_app/models/question.dart';
+import 'package:learn_flutter_app/models/challenge.dart';
 
 class QuestionNotifier extends ChangeNotifier {
   Challenge _currentQuestion;

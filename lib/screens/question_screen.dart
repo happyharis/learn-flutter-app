@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/components/explanation_bottom_sheet.dart';
 import 'package:learn_flutter_app/components/list_answer_button_view.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
-import 'package:learn_flutter_app/models/question.dart';
+import 'package:learn_flutter_app/models/challenge.dart';
 import 'package:learn_flutter_app/models/question_notifier.dart';
 import 'package:learn_flutter_app/screens/challenge_screen.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';

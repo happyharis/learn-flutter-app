@@ -10,21 +10,17 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatelessWidget {
+  final Question question;
+
+  const QuestionScreen({Key key, @required this.question}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _question = question;
     return ChangeNotifierProxyProvider0<QuestionNotifier>(
       create: (context) => QuestionNotifier(),
-      update: (_, questionNotifier) {
-        return questionNotifier..initialise(_question);
-      },
-      builder: (context, _) {
-        final questionNotifier = Provider.of<QuestionNotifier>(context);
-
-        final _isCompleted =
-            questionNotifier.currentQuestion.isCompleted ?? false;
-        final _hasPickedAnswer =
-            questionNotifier.currentQuestion.isCorrect != null;
+      update: (_, questionNotifier) => questionNotifier..initialise(question),
+      child: Consumer<QuestionNotifier>(builder: (_, qnNotifier, __) {
+        final _isCompleted = qnNotifier.currentQuestion.isCompleted ?? false;
+        final _hasPickedAnswer = qnNotifier.currentQuestion.isCorrect != null;
         return Scaffold(
           appBar: AppBar(
             bottom: _hasPickedAnswer && _isCompleted ? ResultBottomBar() : null,
@@ -52,9 +48,7 @@ class QuestionScreen extends StatelessWidget {
                   height: 187,
                   color: ZukunfColor.blue,
                   child: Stack(
-                    children: [
-                      CardImage(),
-                    ],
+                    children: [CardImage()],
                   ),
                 ),
                 Padding(
@@ -63,15 +57,15 @@ class QuestionScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 38),
-                        child: Text(_question.text),
+                        child: Text(question.text),
                       ),
-                      ListAnswerButtonView(answers: _question.options),
+                      ListAnswerButtonView(answers: question.options),
                       SizedBox(height: 15),
                       ZukunfButton.solid(
                         text: _isCompleted ?? false ? 'Continue' : 'Submit',
                         onPressed: () {
                           if (_hasPickedAnswer) {
-                            questionNotifier.updateCompletion(true);
+                            qnNotifier.updateCompletion(true);
                             if (_isCompleted) Navigator.of(context).pop();
                           }
                         },
@@ -102,7 +96,7 @@ class QuestionScreen extends StatelessWidget {
             ),
           ),
         );
-      },
+      }),
     );
   }
 }

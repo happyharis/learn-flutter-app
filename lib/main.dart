@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter_app/models/question.dart';
 import 'package:learn_flutter_app/screens/challenge_screen.dart';
 import 'package:learn_flutter_app/screens/question_screen.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => ChallengeScreen(),
-        'question': (_) => QuestionScreen(),
+        'question': (_) => QuestionScreen(question: question),
       },
     );
   }

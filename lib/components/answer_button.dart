@@ -53,7 +53,6 @@ class AnswerButton extends StatelessWidget {
             whenNotTapped: Colors.white,
             whenNotChosenAnswer: Colors.white,
           ),
-          // onSurface: handleButtonColour(whenNotChosenAnswer: Colors.white),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
             side: BorderSide(

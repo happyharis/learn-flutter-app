@@ -32,10 +32,12 @@ class QuestionScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 187,
                   color: ZukunfColor.blue,
-                  child: Stack(
-                    children: [CardTitle(challenge.cardTitleText), CardImage()],
+                  child: Column(
+                    children: [
+                      CardTitle(challenge.cardTitleText),
+                      Image.network(challenge.cardImageUrl, height: 150),
+                    ],
                   ),
                 ),
                 // Body Text
@@ -48,9 +50,10 @@ class QuestionScreen extends StatelessWidget {
                 ),
                 Container(
                   height: 187,
+                  width: double.infinity,
                   color: ZukunfColor.blue,
-                  child: Stack(
-                    children: [CardImage()],
+                  child: Center(
+                    child: Image.network(challenge.questionImageUrl),
                   ),
                 ),
                 Padding(

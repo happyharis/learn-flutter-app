@@ -65,7 +65,10 @@ class ChallengeCard extends StatelessWidget {
                 child: Stack(
                   children: [
                     CardTitle(challenge.cardTitleText),
-                    CardImage(),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.network(challenge.cardImageUrl, height: 140),
+                    ),
                     DescriptionText(challenge.cardDescription),
                   ],
                 ),
@@ -95,34 +98,6 @@ class DescriptionText extends StatelessWidget {
           description,
           maxLines: 3,
           style: TextStyle(fontSize: 14),
-        ),
-      ),
-    );
-  }
-}
-
-class CardImage extends StatelessWidget {
-  const CardImage({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        width: 136,
-        height: 64,
-        color: ZukunfColor.green,
-        child: Center(
-          child: Container(
-            width: 23,
-            height: 23,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: ZukunfColor.red,
-            ),
-          ),
         ),
       ),
     );

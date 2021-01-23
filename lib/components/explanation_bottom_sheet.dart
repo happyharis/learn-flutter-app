@@ -3,9 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
   final String explanationText;
+  final String explanationImage;
 
-  const ExplanationBottomSheet({Key key, this.explanationText})
-      : super(key: key);
+  const ExplanationBottomSheet({
+    Key key,
+    this.explanationText,
+    this.explanationImage,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -22,6 +26,8 @@ class ExplanationBottomSheet extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
+          SizedBox(height: 18),
+          Image.network(explanationImage),
           SizedBox(height: 15),
           Row(children: [
             Expanded(

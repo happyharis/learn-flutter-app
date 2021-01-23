@@ -90,6 +90,7 @@ class QuestionScreen extends StatelessWidget {
                             builder: (context) {
                               return ExplanationBottomSheet(
                                 explanationText: challenge.explanationText,
+                                explanationImage: challenge.explanationImageUrl,
                               );
                             },
                           );

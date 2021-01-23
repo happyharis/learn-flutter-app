@@ -27,6 +27,7 @@ class Challenge {
 
   /// Text in the ExplanationBottomSheet widget
   final String explanationText;
+  final String explanationImageUrl;
 
   Challenge({
     this.cardTitleText,
@@ -40,6 +41,7 @@ class Challenge {
     this.isCorrect,
     this.chosenOptionId,
     this.explanationText,
+    this.explanationImageUrl,
   });
 
   Challenge copyWith({
@@ -81,7 +83,7 @@ final alignmentChallenge = [
     questionText:
         'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
     options: [
-      Choice(id: 1, text: 'Alignment(1, 1)', isAnswer: true),
+      Choice(id: 1, text: 'Alignment(-1, -1)', isAnswer: true),
       Choice(id: 2, text: 'Alignment(1, 0)'),
       Choice(id: 3, text: 'Alignment(0, 1)'),
       Choice(id: 4, text: 'Alignment(0, 0)'),
@@ -90,5 +92,6 @@ final alignmentChallenge = [
         'Top left coordinates are the start alignment 1, 1. Top left coordinates are the start alignment 1, 1.Top left coordinates are the start alignment 1, 1.',
     cardImageUrl: 'https://i.ibb.co/Jqn5Ydx/1.jpg',
     questionImageUrl: 'https://i.ibb.co/t21vmk8/2.jpg',
+    explanationImageUrl: 'https://i.ibb.co/jyjjjxb/1-alignment-explanation.png',
   ),
 ];

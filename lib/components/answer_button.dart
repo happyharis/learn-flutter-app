@@ -20,10 +20,10 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isChosenAnswer = question.chosenAnswerId == choice.id;
+    final isChosenAnswer = question.chosenOptionId == choice.id;
     final isCorrect = isChosenAnswer == choice.isAnswer;
     final questionNotNull =
-        question.chosenAnswerId != null && question.isCompleted != null;
+        question.chosenOptionId != null && question.isCompleted != null;
 
     Color handleButtonColour({
       Color whenTapped = ZukunfColor.yellow,

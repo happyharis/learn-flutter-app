@@ -2,10 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
+import 'package:learn_flutter_app/models/challenge.dart';
+import 'package:learn_flutter_app/screens/question_screen.dart';
+import 'package:provider/provider.dart';
 
 class ChallengeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final challenges = context.watch<List<Challenge>>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -14,22 +18,11 @@ class ChallengeScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ChallengeCard(
-            title: title,
-            description: alignmentText,
-            color: ZukunfColor.blue,
-          ),
-          ChallengeCard(
-            title: 'Container',
-            description:
-                'Container widgets are at default a rectangle shape. How about a circle?',
-            color: ZukunfColor.red,
-          ),
-          ChallengeCard(
-            title: title,
-            description: alignmentText,
-            color: ZukunfColor.green,
-          ),
+          for (var challenge in challenges)
+            ChallengeCard(
+              challenge: challenge,
+              color: ZukunfColor.blue,
+            ),
         ],
       ),
     );
@@ -37,14 +30,12 @@ class ChallengeScreen extends StatelessWidget {
 }
 
 class ChallengeCard extends StatelessWidget {
-  final String title;
-  final String description;
+  final Challenge challenge;
   final Color color;
   const ChallengeCard({
     Key key,
-    @required this.title,
-    @required this.description,
     @required this.color,
+    @required this.challenge,
   }) : super(key: key);
 
   @override
@@ -64,12 +55,18 @@ class ChallengeCard extends StatelessWidget {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                onTap: () => Navigator.of(context).pushNamed('question'),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return QuestionScreen(challenge: challenge);
+                    },
+                  ),
+                ),
                 child: Stack(
                   children: [
-                    CardTitle(title),
+                    CardTitle(challenge.cardTitleText),
                     CardImage(),
-                    DescriptionText(description),
+                    DescriptionText(challenge.cardDescription),
                   ],
                 ),
               ),
@@ -163,5 +160,3 @@ class CardTitle extends StatelessWidget {
 
 final alignmentText =
     'Alignments are great at positioning child widgets. Do you know how to position them outside the widget?';
-
-final title = 'Alignment';

@@ -19,7 +19,7 @@ class Challenge {
   final bool isCorrect;
 
   /// Represent id of tapped answer button
-  final int chosenAnswerId;
+  final int chosenOptionId;
 
   Challenge({
     this.cardTitleText,
@@ -29,7 +29,7 @@ class Challenge {
     this.options,
     this.isCompleted,
     this.isCorrect,
-    this.chosenAnswerId,
+    this.chosenOptionId,
   });
 
   Challenge copyWith({
@@ -44,18 +44,25 @@ class Challenge {
       options: options ?? this.options,
       isCompleted: isCompleted ?? this.isCompleted,
       isCorrect: isCorrect ?? this.isCorrect,
-      chosenAnswerId: chosenAnswerId ?? this.chosenAnswerId,
+      chosenOptionId: chosenAnswerId ?? this.chosenOptionId,
     );
   }
 }
 
-final question = Challenge(
-  questionText:
-      'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
-  options: [
-    Choice(id: 1, text: 'Alignment(1, 1)', isAnswer: true),
-    Choice(id: 2, text: 'Alignment(1, 0)'),
-    Choice(id: 3, text: 'Alignment(0, 1)'),
-    Choice(id: 4, text: 'Alignment(0, 0)'),
-  ],
-);
+final alignmentChallenge = [
+  Challenge(
+    cardTitleText: 'Alignment',
+    cardDescription:
+        'Alignments are great at positioning child widgets. Do you know how to position them outside the widget?',
+    bodyText:
+        'Alignment(0.0, 0.0) represents the center of the rectangle.\n\nThe distance from -1.0 to +1.0 is the distance from one side of the rectangle to the other side of the rectangle.\n\nTherefore, 2.0 units horizontally (or vertically) is equivalent to the width (or height) of the rectangle.\n\nAlignment(-1.0, -1.0) represents the top left of the rectangle.\n\nAlignment(1.0, 1.0) represents the bottom right of the rectangle.',
+    questionText:
+        'If I were to move the middle circle widget to the top left, what are the alignment coordinates?',
+    options: [
+      Choice(id: 1, text: 'Alignment(1, 1)', isAnswer: true),
+      Choice(id: 2, text: 'Alignment(1, 0)'),
+      Choice(id: 3, text: 'Alignment(0, 1)'),
+      Choice(id: 4, text: 'Alignment(0, 0)'),
+    ],
+  ),
+];

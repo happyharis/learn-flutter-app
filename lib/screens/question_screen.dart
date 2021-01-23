@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class QuestionScreen extends StatelessWidget {
   final Challenge challenge;
 
-  const QuestionScreen({Key key, @required this.challenge}) : super(key: key);
+  const QuestionScreen({Key key, this.challenge}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProxyProvider0<QuestionNotifier>(
@@ -35,14 +35,16 @@ class QuestionScreen extends StatelessWidget {
                   height: 187,
                   color: ZukunfColor.blue,
                   child: Stack(
-                    children: [CardTitle('Alignment'), CardImage()],
+                    children: [CardTitle(challenge.cardTitleText), CardImage()],
                   ),
                 ),
+                // Body Text
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 35.0, vertical: 38),
-                  child: Text(
-                      'Alignment(0.0, 0.0) represents the center of the rectangle.\n\nThe distance from -1.0 to +1.0 is the distance from one side of the rectangle to the other side of the rectangle.\n\nTherefore, 2.0 units horizontally (or vertically) is equivalent to the width (or height) of the rectangle.\n\nAlignment(-1.0, -1.0) represents the top left of the rectangle.\n\nAlignment(1.0, 1.0) represents the bottom right of the rectangle.'),
+                    horizontal: 35.0,
+                    vertical: 38,
+                  ),
+                  child: Text(challenge.bodyText),
                 ),
                 Container(
                   height: 187,

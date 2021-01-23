@@ -78,23 +78,9 @@ class QuestionScreen extends StatelessWidget {
                       SizedBox(height: 20),
                       ZukunfButton(
                         text: 'Show Explanation',
-                        onPressed: () {
-                          showMaterialModalBottomSheet(
-                            context: context,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(18),
-                                topRight: Radius.circular(18),
-                              ),
-                            ),
-                            builder: (context) {
-                              return ExplanationBottomSheet(
-                                explanationText: challenge.explanationText,
-                                explanationImage: challenge.explanationImageUrl,
-                              );
-                            },
-                          );
-                        },
+                        onPressed: !_isCompleted
+                            ? null
+                            : () => showExplanationBottomSheet(context),
                       ),
                       SizedBox(height: 32),
                     ],
@@ -105,6 +91,24 @@ class QuestionScreen extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  Future showExplanationBottomSheet(BuildContext context) {
+    return showMaterialModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(18),
+          topRight: Radius.circular(18),
+        ),
+      ),
+      builder: (context) {
+        return ExplanationBottomSheet(
+          explanationText: challenge.explanationText,
+          explanationImage: challenge.explanationImageUrl,
+        );
+      },
     );
   }
 }

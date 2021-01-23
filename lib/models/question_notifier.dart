@@ -20,7 +20,7 @@ class QuestionNotifier extends ChangeNotifier {
 
   void updateChosenAnswer(int answerId) {
     _currentQuestion = _currentQuestion.copyWith(
-      chosenAnswerId: answerId,
+      chosenOptionId: answerId,
     );
     notifyListeners();
   }

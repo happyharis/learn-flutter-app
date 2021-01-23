@@ -6,12 +6,16 @@ class Challenge {
 
   /// Found in the challenge card description (bottom)
   final String cardDescription;
+  final String cardImageUrl;
 
   /// Text inside question screen explaining the topic
   final String bodyText;
 
   /// Text inside question screen found above the options
   final String questionText;
+
+  /// Image found above question text
+  final String questionImageUrl;
   final List<Choice> options;
 
   /// Default null
@@ -27,8 +31,10 @@ class Challenge {
   Challenge({
     this.cardTitleText,
     this.cardDescription,
+    this.cardImageUrl,
     this.bodyText,
     this.questionText,
+    this.questionImageUrl,
     this.options,
     this.isCompleted,
     this.isCorrect,
@@ -37,18 +43,30 @@ class Challenge {
   });
 
   Challenge copyWith({
-    text,
-    options,
-    isCompleted,
-    isCorrect,
-    chosenAnswerId,
+    String cardTitleText,
+    String cardDescription,
+    String cardImageUrl,
+    String bodyText,
+    String questionText,
+    String questionImageUrl,
+    List<Choice> options,
+    bool isCompleted,
+    bool isCorrect,
+    int chosenOptionId,
+    String explanationText,
   }) {
     return Challenge(
-      questionText: text ?? this.questionText,
+      cardTitleText: cardTitleText ?? this.cardTitleText,
+      cardDescription: cardDescription ?? this.cardDescription,
+      cardImageUrl: cardImageUrl ?? this.cardImageUrl,
+      bodyText: bodyText ?? this.bodyText,
+      questionText: questionText ?? this.questionText,
+      questionImageUrl: questionImageUrl ?? this.questionImageUrl,
       options: options ?? this.options,
       isCompleted: isCompleted ?? this.isCompleted,
       isCorrect: isCorrect ?? this.isCorrect,
-      chosenOptionId: chosenAnswerId ?? this.chosenOptionId,
+      chosenOptionId: chosenOptionId ?? this.chosenOptionId,
+      explanationText: explanationText ?? this.explanationText,
     );
   }
 }
@@ -70,5 +88,7 @@ final alignmentChallenge = [
     ],
     explanationText:
         'Top left coordinates are the start alignment 1, 1. Top left coordinates are the start alignment 1, 1.Top left coordinates are the start alignment 1, 1.',
+    cardImageUrl: 'https://i.ibb.co/Jqn5Ydx/1.jpg',
+    questionImageUrl: 'https://i.ibb.co/t21vmk8/2.jpg',
   ),
 ];

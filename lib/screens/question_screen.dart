@@ -85,7 +85,9 @@ class QuestionScreen extends StatelessWidget {
                               ),
                             ),
                             builder: (context) {
-                              return ExplanationBottomSheet();
+                              return ExplanationBottomSheet(
+                                explanationText: challenge.explanationText,
+                              );
                             },
                           );
                         },

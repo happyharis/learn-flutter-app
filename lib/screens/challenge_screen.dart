@@ -157,6 +157,3 @@ class CardTitle extends StatelessWidget {
     );
   }
 }
-
-final alignmentText =
-    'Alignments are great at positioning child widgets. Do you know how to position them outside the widget?';

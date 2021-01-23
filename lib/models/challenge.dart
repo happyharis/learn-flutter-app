@@ -21,6 +21,9 @@ class Challenge {
   /// Represent id of tapped answer button
   final int chosenOptionId;
 
+  /// Text in the ExplanationBottomSheet widget
+  final String explanationText;
+
   Challenge({
     this.cardTitleText,
     this.cardDescription,
@@ -30,6 +33,7 @@ class Challenge {
     this.isCompleted,
     this.isCorrect,
     this.chosenOptionId,
+    this.explanationText,
   });
 
   Challenge copyWith({
@@ -64,5 +68,7 @@ final alignmentChallenge = [
       Choice(id: 3, text: 'Alignment(0, 1)'),
       Choice(id: 4, text: 'Alignment(0, 0)'),
     ],
+    explanationText:
+        'Top left coordinates are the start alignment 1, 1. Top left coordinates are the start alignment 1, 1.Top left coordinates are the start alignment 1, 1.',
   ),
 ];

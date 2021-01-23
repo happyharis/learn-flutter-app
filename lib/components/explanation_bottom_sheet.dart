@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
+  final String explanationText;
+
+  const ExplanationBottomSheet({Key key, this.explanationText})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -18,11 +22,15 @@ class ExplanationBottomSheet extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Row(
-            children: [
-              Text('Alignment'),
-            ],
-          ),
+          SizedBox(height: 15),
+          Row(children: [
+            Expanded(
+              child: Text(
+                explanationText,
+                overflow: TextOverflow.clip,
+              ),
+            )
+          ]),
         ],
       ),
     );

@@ -76,12 +76,11 @@ class QuestionScreen extends StatelessWidget {
                         },
                       ),
                       SizedBox(height: 20),
-                      ZukunfButton(
-                        text: 'Show Explanation',
-                        onPressed: !_isCompleted
-                            ? null
-                            : () => showExplanationBottomSheet(context),
-                      ),
+                      if (_isCompleted)
+                        ZukunfButton(
+                          text: 'Show Explanation',
+                          onPressed: () => showExplanationBottomSheet(context),
+                        ),
                       SizedBox(height: 32),
                     ],
                   ),

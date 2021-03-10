@@ -27,7 +27,12 @@ class ExplanationBottomSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18),
-          Image.network(explanationImage),
+          Row(
+            children: [
+              Flexible(child: Image.network(explanationImage)),
+              // Image.network(explanationImage)
+            ],
+          ),
           SizedBox(height: 15),
           Row(children: [
             Expanded(

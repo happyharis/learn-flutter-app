@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
@@ -10,20 +9,24 @@ class ChallengeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final challenges = context.watch<List<Challenge>>();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Flutter Challenges',
+    final topPadding = MediaQuery.of(context).padding.top;
+    return Padding(
+      padding: EdgeInsets.only(top: topPadding),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Flutter Challenges',
+          ),
         ),
-      ),
-      body: ListView(
-        children: [
-          for (var challenge in challenges)
-            ChallengeCard(
-              challenge: challenge,
-              color: ZukunfColor.blue,
-            ),
-        ],
+        body: ListView(
+          children: [
+            for (var challenge in challenges)
+              ChallengeCard(
+                challenge: challenge,
+                color: ZukunfColor.blue,
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -94,7 +97,7 @@ class DescriptionText extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: AutoSizeText(
+        child: Text(
           description,
           maxLines: 3,
           style: TextStyle(fontSize: 14),

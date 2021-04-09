@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
-  final String explanationText;
-  final String explanationImage;
+  final String? explanationText;
+  final String? explanationImage;
 
   const ExplanationBottomSheet({
-    Key key,
+    Key? key,
     this.explanationText,
     this.explanationImage,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class ExplanationBottomSheet extends StatelessWidget {
           SizedBox(height: 18),
           Row(
             children: [
-              Flexible(child: Image.network(explanationImage)),
+              Flexible(child: Image.network(explanationImage!)),
               // Image.network(explanationImage)
             ],
           ),
@@ -37,7 +37,7 @@ class ExplanationBottomSheet extends StatelessWidget {
           Row(children: [
             Expanded(
               child: Text(
-                explanationText,
+                explanationText!,
                 overflow: TextOverflow.clip,
               ),
             )

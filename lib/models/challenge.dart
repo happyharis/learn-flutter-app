@@ -2,32 +2,32 @@ import 'package:learn_flutter_app/models/choice.dart';
 
 class Challenge {
   /// Found in the challenge card title (top)
-  final String cardTitleText;
+  final String? cardTitleText;
 
   /// Found in the challenge card description (bottom)
-  final String cardDescription;
-  final String cardImageUrl;
+  final String? cardDescription;
+  final String? cardImageUrl;
 
   /// Text inside question screen explaining the topic
-  final String bodyText;
+  final String? bodyText;
 
   /// Text inside question screen found above the options
-  final String questionText;
+  final String? questionText;
 
   /// Image found above question text
-  final String questionImageUrl;
-  final List<Choice> options;
+  final String? questionImageUrl;
+  final List<Choice>? options;
 
   /// Default null
-  final bool isCompleted;
-  final bool isCorrect;
+  final bool? isCompleted;
+  final bool? isCorrect;
 
   /// Represent id of tapped answer button
-  final int chosenOptionId;
+  final int? chosenOptionId;
 
   /// Text in the ExplanationBottomSheet widget
-  final String explanationText;
-  final String explanationImageUrl;
+  final String? explanationText;
+  final String? explanationImageUrl;
 
   Challenge({
     this.cardTitleText,
@@ -45,17 +45,17 @@ class Challenge {
   });
 
   Challenge copyWith({
-    String cardTitleText,
-    String cardDescription,
-    String cardImageUrl,
-    String bodyText,
-    String questionText,
-    String questionImageUrl,
-    List<Choice> options,
-    bool isCompleted,
-    bool isCorrect,
-    int chosenOptionId,
-    String explanationText,
+    String? cardTitleText,
+    String? cardDescription,
+    String? cardImageUrl,
+    String? bodyText,
+    String? questionText,
+    String? questionImageUrl,
+    List<Choice>? options,
+    bool? isCompleted,
+    bool? isCorrect,
+    int? chosenOptionId,
+    String? explanationText,
   }) {
     return Challenge(
       cardTitleText: cardTitleText ?? this.cardTitleText,

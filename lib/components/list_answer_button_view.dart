@@ -5,10 +5,10 @@ import 'package:learn_flutter_app/models/question_notifier.dart';
 import 'package:provider/provider.dart';
 
 class ListAnswerButtonView extends StatefulWidget {
-  final List<Choice> answers;
+  final List<Choice>? answers;
   const ListAnswerButtonView({
-    Key key,
-    @required this.answers,
+    Key? key,
+    required this.answers,
   }) : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class ListAnswerButtonView extends StatefulWidget {
 }
 
 class _ListAnswerButtonViewState extends State<ListAnswerButtonView> {
-  int index;
+  int? index;
   @override
   Widget build(BuildContext context) {
     final updateAnswer = Provider.of<QuestionNotifier>(
@@ -31,13 +31,13 @@ class _ListAnswerButtonViewState extends State<ListAnswerButtonView> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (var answer in widget.answers)
+        for (var answer in widget.answers!)
           AnswerButton(
             choice: answer,
             question: _question,
-            isTapped: index == widget.answers.indexOf(answer),
+            isTapped: index == widget.answers!.indexOf(answer),
             onPressed: () {
-              final currentIndex = widget.answers.indexOf(answer);
+              final currentIndex = widget.answers!.indexOf(answer);
               setState(() => index = currentIndex);
               updateChosenAnswer(answer.id);
               updateAnswer(answer.isAnswer);

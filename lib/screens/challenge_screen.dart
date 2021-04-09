@@ -36,9 +36,9 @@ class ChallengeCard extends StatelessWidget {
   final Challenge challenge;
   final Color color;
   const ChallengeCard({
-    Key key,
-    @required this.color,
-    @required this.challenge,
+    Key? key,
+    required this.color,
+    required this.challenge,
   }) : super(key: key);
 
   @override
@@ -70,7 +70,7 @@ class ChallengeCard extends StatelessWidget {
                     CardTitle(challenge.cardTitleText),
                     Align(
                       alignment: Alignment.center,
-                      child: Image.network(challenge.cardImageUrl, height: 140),
+                      child: Image.network(challenge.cardImageUrl!, height: 140),
                     ),
                     DescriptionText(challenge.cardDescription),
                   ],
@@ -85,10 +85,10 @@ class ChallengeCard extends StatelessWidget {
 }
 
 class DescriptionText extends StatelessWidget {
-  final String description;
+  final String? description;
   const DescriptionText(
     this.description, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -98,7 +98,7 @@ class DescriptionText extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Text(
-          description,
+          description!,
           maxLines: 3,
           style: TextStyle(fontSize: 14),
         ),
@@ -108,10 +108,10 @@ class DescriptionText extends StatelessWidget {
 }
 
 class CardTitle extends StatelessWidget {
-  final String title;
+  final String? title;
   const CardTitle(
     this.title, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -123,7 +123,7 @@ class CardTitle extends StatelessWidget {
         child: FittedBox(
           fit: BoxFit.fitWidth,
           child: Text(
-            title,
+            title!,
             style: GoogleFonts.montserrat(
               fontSize: 48,
               fontWeight: FontWeight.bold,

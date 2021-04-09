@@ -6,13 +6,13 @@ import 'package:learn_flutter_app/models/challenge.dart';
 
 class AnswerButton extends StatelessWidget {
   final bool isTapped;
-  final Function() onPressed;
-  final Challenge question;
-  final Choice choice;
+  final Function()? onPressed;
+  final Challenge? question;
+  final Choice? choice;
 
   const AnswerButton({
-    Key key,
-    @required this.isTapped,
+    Key? key,
+    required this.isTapped,
     this.onPressed,
     this.question,
     this.choice,
@@ -20,28 +20,28 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isChosenAnswer = question.chosenOptionId == choice.id;
-    final isCorrect = isChosenAnswer == choice.isAnswer;
+    final isChosenAnswer = question!.chosenOptionId == choice!.id;
+    final isCorrect = isChosenAnswer == choice!.isAnswer;
     final questionNotNull =
-        question.chosenOptionId != null && question.isCompleted != null;
+        question!.chosenOptionId != null && question!.isCompleted != null;
 
-    Color handleButtonColour({
+    Color? handleButtonColour({
       Color whenTapped = ZukunfColor.yellow,
-      Color whenNotTapped,
+      Color? whenNotTapped,
       Color whenCorrect = ZukunfColor.lightPurple,
       Color whenWrong = ZukunfColor.yellow,
       Color whenCompleted = Colors.white,
       Color whenNotChosenAnswer = ZukunfColor.purple,
     }) {
-      if (questionNotNull && question.isCompleted) {
+      if (questionNotNull && question!.isCompleted!) {
         if (isCorrect) return whenCorrect;
-        if (!isCorrect && choice.isAnswer == true) return whenNotChosenAnswer;
+        if (!isCorrect && choice!.isAnswer == true) return whenNotChosenAnswer;
         if (!isCorrect && isChosenAnswer) return whenWrong;
 
         // Other choices not chosen
         return whenCompleted;
       }
-      return isTapped ?? false ? whenTapped : whenNotTapped;
+      return isTapped ? whenTapped : whenNotTapped;
     }
 
     return Padding(
@@ -56,7 +56,7 @@ class AnswerButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
             side: BorderSide(
-              color: handleButtonColour(whenNotTapped: ZukunfColor.blue),
+              color: handleButtonColour(whenNotTapped: ZukunfColor.blue)!,
               width: 2.0,
             ),
           ),
@@ -66,7 +66,7 @@ class AnswerButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Text(
-              choice.text,
+              choice!.text!,
               style: GoogleFonts.montserrat(
                 fontSize: 18,
                 textStyle: TextStyle(
@@ -83,7 +83,7 @@ class AnswerButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: question.isCompleted ?? false ? null : onPressed,
+        onPressed: question!.isCompleted ?? false ? null : onPressed,
       ),
     );
   }

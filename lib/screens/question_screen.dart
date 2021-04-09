@@ -10,17 +10,17 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatelessWidget {
-  final Challenge challenge;
+  final Challenge? challenge;
 
-  const QuestionScreen({Key key, this.challenge}) : super(key: key);
+  const QuestionScreen({Key? key, this.challenge}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProxyProvider0<QuestionNotifier>(
       create: (context) => QuestionNotifier(),
-      update: (_, questionNotifier) => questionNotifier..initialise(challenge),
+      update: (_, questionNotifier) => questionNotifier!..initialise(challenge),
       child: Consumer<QuestionNotifier>(builder: (_, qnNotifier, __) {
-        final _isCompleted = qnNotifier.currentQuestion.isCompleted ?? false;
-        final _hasPickedAnswer = qnNotifier.currentQuestion.isCorrect != null;
+        final _isCompleted = qnNotifier.currentQuestion!.isCompleted ?? false;
+        final _hasPickedAnswer = qnNotifier.currentQuestion!.isCorrect != null;
         return Scaffold(
           appBar: AppBar(
             bottom: _hasPickedAnswer && _isCompleted ? ResultBottomBar() : null,
@@ -35,8 +35,8 @@ class QuestionScreen extends StatelessWidget {
                   color: ZukunfColor.blue,
                   child: Column(
                     children: [
-                      CardTitle(challenge.cardTitleText),
-                      Image.network(challenge.cardImageUrl, height: 150),
+                      CardTitle(challenge!.cardTitleText),
+                      Image.network(challenge!.cardImageUrl!, height: 150),
                     ],
                   ),
                 ),
@@ -46,14 +46,14 @@ class QuestionScreen extends StatelessWidget {
                     horizontal: 35.0,
                     vertical: 38,
                   ),
-                  child: Text(challenge.bodyText),
+                  child: Text(challenge!.bodyText!),
                 ),
                 Container(
                   height: 187,
                   width: double.infinity,
                   color: ZukunfColor.blue,
                   child: Center(
-                    child: Image.network(challenge.questionImageUrl),
+                    child: Image.network(challenge!.questionImageUrl!),
                   ),
                 ),
                 Padding(
@@ -62,12 +62,12 @@ class QuestionScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 38),
-                        child: Text(challenge.questionText),
+                        child: Text(challenge!.questionText!),
                       ),
-                      ListAnswerButtonView(answers: challenge.options),
+                      ListAnswerButtonView(answers: challenge!.options),
                       SizedBox(height: 15),
                       ZukunfButton.solid(
-                        text: _isCompleted ?? false ? 'Continue' : 'Submit',
+                        text: _isCompleted ? 'Continue' : 'Submit',
                         onPressed: () {
                           if (_hasPickedAnswer) {
                             qnNotifier.updateCompletion(true);
@@ -104,8 +104,8 @@ class QuestionScreen extends StatelessWidget {
       ),
       builder: (context) {
         return ExplanationBottomSheet(
-          explanationText: challenge.explanationText,
-          explanationImage: challenge.explanationImageUrl,
+          explanationText: challenge!.explanationText,
+          explanationImage: challenge!.explanationImageUrl,
         );
       },
     );
@@ -114,13 +114,13 @@ class QuestionScreen extends StatelessWidget {
 
 class ResultBottomBar extends StatelessWidget implements PreferredSize {
   const ResultBottomBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final isCorrect = context.select<QuestionNotifier, bool>((notifier) {
-      return notifier.currentQuestion.isCorrect ?? false;
+      return notifier.currentQuestion!.isCorrect ?? false;
     });
     return Container(
       color: Colors.grey.shade400,
@@ -147,15 +147,15 @@ class ZukunfButton extends StatelessWidget {
   final Function() onPressed;
   final bool isSolid;
   const ZukunfButton({
-    Key key,
-    @required this.text,
-    @required this.onPressed,
+    Key? key,
+    required this.text,
+    required this.onPressed,
     this.isSolid = false,
   }) : super(key: key);
   const ZukunfButton.solid({
-    Key key,
-    @required this.text,
-    @required this.onPressed,
+    Key? key,
+    required this.text,
+    required this.onPressed,
     this.isSolid = true,
   }) : super(key: key);
 
